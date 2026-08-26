@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no">
+<title>Pluspunkte ❤️</title>
+<meta name="description" content="Pluspunkte für dich, gesammelt von Herzen.">
+
+<!-- PWA -->
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#FFF7F9">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Pluspunkte">
+<link rel="apple-touch-icon" href="icons/icon-180.png">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16.png">
+
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="app">
+
+  <header class="app__header">
+    <h1 class="app__title">Pluspunkte <span class="heart-emoji">❤️</span></h1>
+  </header>
+
+  <main class="app__main">
+
+    <section class="round-card" aria-label="Aktuelle Runde">
+      <div class="round-number" id="roundNumber">0</div>
+      <div class="round-caption">von <span id="roundGoal">13</span> Pluspunkten</div>
+
+      <div class="hearts" id="heartsRow" role="img" aria-label="Fortschritt der aktuellen Runde"></div>
+
+      <div class="actions">
+        <button class="btn btn--primary" id="addBtn" type="button">
+          <span class="btn__plus">＋</span> Pluspunkt
+        </button>
+        <button class="btn btn--ghost" id="removeBtn" type="button">
+          Letzten entfernen
+        </button>
+      </div>
+    </section>
+
+    <section class="total-card" aria-label="Gesamtzähler">
+      <div class="total-card__icon">♥</div>
+      <div class="total-card__label">Insgesamt gesammelt</div>
+      <div class="total-card__number" id="totalNumber">0</div>
+      <div class="total-card__suffix">Pluspunkte ♥</div>
+    </section>
+
+  </main>
+
+  <footer class="app__footer">
+    <span id="footerNote">Für dich, ein Punkt nach dem anderen.</span>
+  </footer>
+
+</div>
+
+<!-- Abschluss-Overlay bei 13 Punkten -->
+<div class="celebrate" id="celebrateOverlay" hidden>
+  <div class="celebrate__hearts" id="celebrateHearts" aria-hidden="true"></div>
+  <div class="celebrate__card">
+    <div class="celebrate__big-heart">❤️</div>
+    <div class="celebrate__title">13 Pluspunkte!</div>
+    <div class="celebrate__subtitle">Eine Runde voller Herzen ist geschafft.</div>
+    <button class="btn btn--primary celebrate__continue" id="continueBtn" type="button">Weiter</button>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

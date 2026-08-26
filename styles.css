@@ -1,0 +1,358 @@
+:root {
+  --bg: #FFF7F9;
+  --card: #FFFFFF;
+  --card-border: #FBE4EB;
+  --ink: #3B2430;
+  --ink-soft: #9C7B87;
+  --pink-500: #FF5C8A;
+  --pink-600: #FF2D6A;
+  --pink-100: #FFE3EC;
+  --pink-050: #FFF1F5;
+  --outline-heart: #F4CBD8;
+  --shadow-color: 340 60% 80%;
+
+  --font-display: ui-serif, "New York", "Iowan Old Style", Georgia, "Times New Roman", serif;
+  --font-body: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: var(--bg);
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior-y: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  body { scroll-behavior: smooth; }
+}
+
+.app {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: max(20px, env(safe-area-inset-top)) 20px calc(28px + env(safe-area-inset-bottom));
+  max-width: 460px;
+  margin: 0 auto;
+  background:
+    radial-gradient(120% 60% at 50% -10%, var(--pink-050) 0%, transparent 60%),
+    var(--bg);
+}
+
+.app__header {
+  width: 100%;
+  padding: 6px 0 18px;
+  text-align: center;
+}
+
+.app__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 26px;
+  letter-spacing: 0.2px;
+  color: var(--ink);
+}
+
+.heart-emoji { display: inline-block; }
+
+.app__main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ---------- Round card ---------- */
+
+.round-card {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 28px;
+  padding: 30px 22px 26px;
+  text-align: center;
+  box-shadow: 0 1px 2px hsl(var(--shadow-color) / 0.25),
+              0 18px 40px -20px hsl(var(--shadow-color) / 0.55);
+}
+
+.round-number {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 76px;
+  line-height: 1;
+  color: var(--pink-600);
+  transition: transform 0.28s cubic-bezier(.34, 1.56, .64, 1);
+}
+
+.round-number.bump {
+  transform: scale(1.14);
+}
+
+.round-caption {
+  margin-top: 6px;
+  font-size: 15px;
+  color: var(--ink-soft);
+  font-weight: 500;
+}
+
+.hearts {
+  margin-top: 22px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 7px;
+  max-width: 320px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.heart-icon {
+  width: 26px;
+  height: 26px;
+  flex: 0 0 auto;
+}
+
+.heart-icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.heart-icon .fill {
+  fill: var(--outline-heart);
+  transition: fill 0.35s ease;
+}
+
+.heart-icon.filled .fill {
+  fill: url(#heartGradient);
+}
+
+.heart-icon.pop {
+  animation: heartPop 0.42s cubic-bezier(.34, 1.56, .64, 1);
+}
+
+@keyframes heartPop {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.35); }
+  100% { transform: scale(1); }
+}
+
+.actions {
+  margin-top: 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.btn {
+  border: none;
+  border-radius: 18px;
+  font-family: var(--font-body);
+  font-size: 17px;
+  font-weight: 600;
+  padding: 16px 20px;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn--primary {
+  color: #fff;
+  background: linear-gradient(180deg, var(--pink-500), var(--pink-600));
+  box-shadow: 0 10px 24px -8px hsl(var(--shadow-color) / 0.75);
+}
+
+.btn__plus {
+  font-weight: 700;
+  margin-right: 2px;
+}
+
+.btn--ghost {
+  color: var(--pink-600);
+  background: var(--pink-050);
+}
+
+.btn--ghost:disabled {
+  color: var(--ink-soft);
+  background: #F6F0F2;
+  cursor: default;
+}
+
+.btn:disabled { opacity: 0.55; }
+
+/* ---------- Total card ---------- */
+
+.total-card {
+  background: linear-gradient(165deg, #FFFFFF, var(--pink-050));
+  border: 1px solid var(--card-border);
+  border-radius: 24px;
+  padding: 22px;
+  text-align: center;
+}
+
+.total-card__icon {
+  font-size: 20px;
+  color: var(--pink-500);
+}
+
+.total-card__label {
+  margin-top: 2px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.total-card__number {
+  margin-top: 6px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 40px;
+  color: var(--ink);
+  transition: transform 0.28s cubic-bezier(.34, 1.56, .64, 1);
+}
+
+.total-card__number.bump {
+  transform: scale(1.1);
+}
+
+.total-card__suffix {
+  margin-top: 2px;
+  font-size: 13px;
+  color: var(--ink-soft);
+  font-weight: 500;
+}
+
+.app__footer {
+  margin-top: 22px;
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  text-align: center;
+}
+
+/* ---------- Celebration overlay ---------- */
+
+.celebrate {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: hsl(340 70% 30% / 0.28);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  animation: fadeIn 0.25s ease;
+}
+
+.celebrate[hidden] { display: none; }
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.celebrate__hearts {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.confetti-heart {
+  position: absolute;
+  top: -40px;
+  font-size: 22px;
+  opacity: 0.9;
+  animation-name: fall;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(115vh) rotate(200deg);
+    opacity: 0.15;
+  }
+}
+
+.celebrate__card {
+  position: relative;
+  background: var(--card);
+  border-radius: 28px;
+  padding: 36px 26px 30px;
+  max-width: 320px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 30px 60px -20px hsl(340 70% 20% / 0.5);
+  animation: popIn 0.42s cubic-bezier(.34, 1.56, .64, 1);
+}
+
+@keyframes popIn {
+  from { transform: scale(0.82); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+.celebrate__big-heart {
+  font-size: 54px;
+  animation: heartbeat 1.1s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  25%      { transform: scale(1.12); }
+  40%      { transform: scale(0.98); }
+  55%      { transform: scale(1.08); }
+}
+
+.celebrate__title {
+  margin-top: 12px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 24px;
+  color: var(--ink);
+}
+
+.celebrate__subtitle {
+  margin-top: 6px;
+  font-size: 14.5px;
+  color: var(--ink-soft);
+  line-height: 1.4;
+}
+
+.celebrate__continue {
+  margin-top: 22px;
+  width: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .round-number, .total-card__number, .heart-icon, .celebrate__card, .celebrate__big-heart {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Small screens (iPhone SE etc.) */
+@media (max-width: 360px) {
+  .round-number { font-size: 64px; }
+  .heart-icon { width: 22px; height: 22px; }
+}
